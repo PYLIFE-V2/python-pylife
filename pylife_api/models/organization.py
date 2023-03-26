@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, ValidationError, parse_obj_as, validator
 from pydantic.networks import HttpUrl
 
 
@@ -23,6 +23,9 @@ class Organization(BaseModel):
     money: int = Field(alias="money")
     members: Optional[List[Member]] = Field(alias="members")
 
-    @validator("logo", "website")
+    @validator("logo", "website", pre=True)
     def validate_urls(cls, value):
-        pass
+        try:
+            return parse_obj_as(HttpUrl, value)
+        except ValidationError:
+            return None
