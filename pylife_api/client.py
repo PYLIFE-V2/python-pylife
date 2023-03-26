@@ -9,7 +9,7 @@ try:
 except ImportError:
     from json import loads
 
-from pylife_api.models import House, Organization, Player
+from .models import House, Organization, Player
 
 
 class PylifeAPIClient:
