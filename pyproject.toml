@@ -1,0 +1,30 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pylife-api"
+authors = [{ name = "David Sn", email = "divad.nnamtdeis@gmail.com" }]
+description = "Python API for Play Your Life v2 user panel."
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["pylife", "mta", "api"]
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = ["aiohttp", "pydantic"]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+rapidjson = ["python-rapidjson"]
+
+[project.urls]
+Home = "https://github.com/mapapylife/python-pylife"
