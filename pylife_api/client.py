@@ -59,5 +59,9 @@ class PylifeAPIClient:
         json_data = await self.fetch("POST", "/api/gracze", json={"auth": self.auth_token})
         return parse_obj_as(List[Player], json_data)
 
+    async def search(self, query: str) -> List[Player]:
+        json_data = await self.fetch("GET", f"/api/search/{query}")
+        return parse_obj_as(List[Player], json_data)
+
     async def close(self):
         await self.session.close()
