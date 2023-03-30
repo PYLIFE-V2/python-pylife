@@ -35,6 +35,16 @@ class PylifeAPIClient:
             },
         )
 
+    @property
+    def closed(self) -> bool:
+        """
+        Check if client session is closed.
+
+        Returns:
+            bool: True if client session is closed, False otherwise.
+        """
+        return self._session.closed
+
     async def fetch(self, method: str, url: str, **kwargs) -> Any:
         """
         Fetch data from API.
