@@ -143,3 +143,23 @@ class PylifeAPIClient:
         Close client session.
         """
         await self._session.close()
+
+    async def __aenter__(self):
+        """
+        Enter the context manager and return an object.
+
+        Returns:
+            PylifeAPIClient: Client object.
+        """
+        return self
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        """
+        Exit the context manager.
+
+        Args:
+            exc_type (type): The type of the exception that occurred, if any.
+            exc_value (Exception): The exception instance that was raised, if any.
+            traceback (traceback): The traceback of the exception that was raised, if any.
+        """
+        await self.close()
