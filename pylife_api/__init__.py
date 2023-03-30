@@ -1,4 +1,4 @@
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 from .client import PylifeAPIClient
 from .models import Achievement, Fine, House, Member, Membership, Organization, Player
