@@ -1,9 +1,9 @@
+__version__ = "0.1.1"
+
 from .client import PylifeAPIClient
 from .models import Achievement, Fine, House, Member, Membership, Organization, Player
 
-__version__ = "0.1.1"
 __all__ = [
-    "PylifeAPIClient",
     "Achievement",
     "Fine",
     "House",
@@ -11,4 +11,5 @@ __all__ = [
     "Membership",
     "Organization",
     "Player",
+    "PylifeAPIClient",
 ]

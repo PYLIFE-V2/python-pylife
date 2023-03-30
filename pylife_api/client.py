@@ -9,6 +9,7 @@ try:
 except ImportError:
     import json
 
+from . import __version__
 from .models import House, Organization, Player
 
 
@@ -30,7 +31,7 @@ class PylifeAPIClient:
             json_serialize=json.dumps,
             headers={
                 "Content-Type": "application/json",
-                "User-Agent": f"pylife-api/2.0 (Python {python_version()}; aiohttp {aiohttp.__version__})",
+                "User-Agent": f"pylife-api/{__version__} Python/{python_version()} aiohttp/{aiohttp.__version__}",
             },
         )
 
