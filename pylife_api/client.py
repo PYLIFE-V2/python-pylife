@@ -1,5 +1,6 @@
 from platform import python_version
 from typing import Any, List, Optional
+from urllib.parse import quote
 
 import aiohttp
 from pydantic import parse_obj_as
@@ -146,7 +147,7 @@ class PylifeAPIClient:
         Returns:
             List[Player]: List of players.
         """
-        json_data = await self.fetch("GET", f"/api/search/{query}")
+        json_data = await self.fetch("GET", f"/api/search/{quote(query)}")
         return parse_obj_as(List[Player], json_data)
 
     async def close(self):
