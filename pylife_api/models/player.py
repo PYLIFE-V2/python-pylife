@@ -14,9 +14,13 @@ class Achievement(BaseModel):
 
 
 class Membership(BaseModel):
-    id: int = Field(alias="org")
-    rank: int = Field(alias="rank")
+    player_id: int = Field(alias="uid")
+    organization_id: int = Field(alias="org")
+    rank: Optional[int] = Field(alias="rank")
     join_date: datetime = Field(alias="joinDate")
+    reputation: int = Field(alias="reputation")
+    kills: int = Field(alias="kills")
+    deaths: int = Field(alias="deaths")
 
 
 class Fine(BaseModel):
@@ -40,9 +44,9 @@ class Player(BaseModel):
     points: int = Field(alias="pg")
     premium: Optional[datetime] = Field(alias="premium")
     registered: datetime = Field(alias="registered")
-    achievements: Optional[List[Achievement]] = Field(alias="achievements")
-    organizations: Optional[List[Membership]] = Field(alias="organization")
-    fines: Optional[List[Fine]] = Field(alias="fines")
+    achievements: Optional[List[Achievement]] = Field(None, alias="achievements")
+    organizations: Optional[List[Membership]] = Field(None, alias="organization")
+    fines: Optional[List[Fine]] = Field(None, alias="fines")
 
     @property
     def reputation(self) -> int:
@@ -50,4 +54,4 @@ class Player(BaseModel):
 
     @property
     def has_premium(self) -> bool:
-        return self.premium >= datetime.now(timezone.utc)
+        return self.premium and self.premium >= datetime.now(timezone.utc)

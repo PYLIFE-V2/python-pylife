@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, validator
+from pydantic import field_validator, BaseModel, Field
 
 
 class Position(BaseModel):
@@ -19,7 +19,7 @@ class House(BaseModel):
     expires: Optional[datetime] = Field(alias="expires")
     price: float = Field(alias="price")
 
-    @validator("position", pre=True)
+    @field_validator("position", mode="before")
     def position_as_str(cls, value):
         if isinstance(value, str):
             x, y, z = value.split(",")
